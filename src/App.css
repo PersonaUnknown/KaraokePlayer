@@ -1,0 +1,8 @@
+.App {
+  flex: 1;
+  display: flex;
+}
+
+body > #root > div {
+  height: 100vh;
+}
