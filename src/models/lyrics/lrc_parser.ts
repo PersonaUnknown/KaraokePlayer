@@ -12,7 +12,7 @@ const ParseLineTimeStamp = (line: string) => {
     let colonIndex = timestamp.indexOf(":")
     let minutes = timestamp.substring(0, colonIndex)
     let seconds = timestamp.substring(colonIndex + 1)
-    return parseInt(minutes) + parseFloat(seconds)
+    return parseInt(minutes) * 60 + parseFloat(seconds)
 }
 const ParseLine = (words: Array<string>) => {
     let currentTimeStamp = -1
@@ -39,6 +39,7 @@ const ParseLine = (words: Array<string>) => {
 export const ParseLRC = async (fileContents: Array<string>) => {
     let parsedContents = {} as Song
     let parsedLyrics = [] as Array<SongLine>
+    let timestamps = [] as Array<Array<number>>
     for (let i = 0; i < fileContents.length; i++) {
         const line: string = fileContents[i]
         const firstColonIndex: number = line.indexOf(":")
@@ -68,12 +69,20 @@ export const ParseLRC = async (fileContents: Array<string>) => {
                 let words: Array<string> = line.split(" ")
                 let parsedWords: Array<SongWord> = ParseLine(words)
                 if (parsedWords.length > 0) {
+                    let lineTimestamps = new Set<number>()
+                    for (let i = 0; i < parsedWords.length; i++) {
+                        let parsedWord: SongWord = parsedWords[i]
+                        lineTimestamps.add(parsedWord.timestamp)
+                    }
+                    let convertedLineTimestamps = Array.from(lineTimestamps)
+                    timestamps.push(convertedLineTimestamps)
                     lyric.line = parsedWords
                     parsedLyrics.push(lyric)
                 }
                 break
         }
     }
+    parsedContents.timestamps = timestamps
     parsedContents.lyrics = parsedLyrics
     console.log(parsedContents)
     return parsedContents

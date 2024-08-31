@@ -14,6 +14,7 @@ export interface Song {
     author: string,
     length: number,
     lyrics: SongLine[],
+    timestamps: Array<Array<number>>
 }
 
 export interface Playlist {

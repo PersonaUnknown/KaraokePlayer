@@ -1,7 +1,6 @@
-import { useContext, useRef, useState } from "react"
+import { useContext, useRef } from "react"
 import { SongContext, SongContextType } from "../../models/refs/songContext";
 import { ParseLRC } from "../../models/lyrics/lrc_parser";
-import { Song } from "../../interfaces/song";
 import SyncedLyricView from "../synced_lyric_view/SyncedLyricView";
 const MainView = () => {
     const { currSongLyrics, setCurrSongLyrics } = useContext(SongContext) as SongContextType
@@ -22,9 +21,6 @@ const MainView = () => {
         audioPlayerRef?.current?.load()
         // audioPlayerRef?.current?.play()
     }
-    // States
-    // const [syncedLyrics, setSyncedLyrics] = useState<Song | null>(null)
-    // const [loadedFiles, setLoadedFiles] = useState<LoadState>({lrcLoaded: false, audioLoaded: false})
     // Refs
     const audioPlayerRef = useRef<HTMLAudioElement>(null)
     // Render

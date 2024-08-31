@@ -3,13 +3,14 @@ import './App.css';
 // Views / Components
 import TabBar from './views/tab_bar/TabBar';
 import AudioPlayer from './views/audio_view/AudioPlayer';
+import LyricView from './views/lrc_view/LyricView';
 import MainView from './views/main_view/MainView';
 // React
 function App() {
   // Tabs
   const tabs: Array<React.ReactElement> = [
     <AudioPlayer/>,
-    <span> 2 </span>,
+    <LyricView/>,
     <span> 3 </span>,
     <span> 4 </span>
   ]
