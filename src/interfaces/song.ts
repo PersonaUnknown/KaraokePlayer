@@ -20,3 +20,9 @@ export interface Song {
 export interface Playlist {
     songs: Song[]
 }
+
+export interface LyricDetails {
+    title: string,
+    artist: string,
+    lyrics: string
+}

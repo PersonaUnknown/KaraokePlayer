@@ -56,7 +56,7 @@ const TabBar = ({ tabLabels, tabComponents, alignment, gap, padding, buttonStyle
         marginLeft: alignment === "right" || alignment === "center" ? 'auto' : 0,
         marginRight: alignment === "left" || alignment === "center" ? 'auto' : 0,
         gap: gap ?? 0,
-        padding: padding === null ? 10 : typeof padding === "number" ? padding : parseFloat(padding as string)
+        padding: padding === null ? 10 : typeof padding === "number" ? padding : parseFloat(padding as string),
     }
     // Render
     return (
